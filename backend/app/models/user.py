@@ -32,3 +32,7 @@ class User(Base):
     
     # Relacionamentos
     strategies = relationship("UserStrategy", back_populates="user")
+    portfolio = relationship("Portfolio", uselist=False)
+    # Relacionamentos para IA
+    ai_alerts = relationship("UserAlert", back_populates="user")
+    chat_sessions = relationship("ChatSession", back_populates="user")

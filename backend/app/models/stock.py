@@ -1,4 +1,5 @@
 from sqlalchemy import Column, Integer, String, Float, DateTime, Text, Boolean
+from sqlalchemy.orm import relationship
 from sqlalchemy.sql import func
 from app.core.database import Base
 
@@ -40,3 +41,8 @@ class Stock(Base):
     # Fonte dos dados
     data_source = Column(String, nullable=True)
     data_quality_score = Column(Float, nullable=True)  # 0-1
+    
+    # Relacionamentos para IA
+    dividend_history = relationship("HistoricalDividend", back_populates="stock")
+    indicator_history = relationship("HistoricalIndicator", back_populates="stock")
+    alerts = relationship("UserAlert", back_populates="stock")
